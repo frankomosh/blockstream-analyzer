@@ -1,0 +1,1 @@
+# miningpool.observer specific mapper

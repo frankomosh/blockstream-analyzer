@@ -1,0 +1,1 @@
+# WebSocket client for stratum_work_client
