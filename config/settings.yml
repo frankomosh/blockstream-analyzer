@@ -1,1 +1,48 @@
 # Configuration settings
+
+# Monitor settings
+monitor:
+  region: "us-east"  # Region this monitor is running in (for region comparison)
+  log_level: "INFO"
+
+# WebSocket clients
+collectors:
+  reconnect_interval: 5.0
+  max_reconnect_interval: 60.0
+  reconnect_factor: 1.5
+  services:
+    miningpool.observer:
+      url: "wss://stratum.miningpool.observer/ws"
+      target_region: "global"
+    stratum.work:
+      url: "wss://stratum.work/ws"
+      target_region: "eu"
+    mempool.space:
+      url: "wss://mempool.space/stratum"
+      target_region: "global"
+
+# Data normalization
+normalizers:
+  schema_mapping: "config/schema_mappings.yml"
+
+# Analysis settings
+analysis:
+  time_window: 300.0  # Time window in seconds for job matching
+  stats_interval: 60.0  # Interval in seconds for statistics calculation
+
+# Database settings
+database:
+  connection_string: "mongodb://localhost:27017"
+  database_name: "stratum_monitor"
+
+# API server settings
+api:
+  host: "0.0.0.0"
+  port: 8080
+  cors_origins:
+    - "http://localhost:3000"
+    - "http://localhost:8080"
+
+# Dashboard settings
+dashboard:
+  port: 3000
