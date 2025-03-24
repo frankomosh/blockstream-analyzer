@@ -1,1 +1,67 @@
-# Schema transformation rules
+# Schema transformation rules for different services
+# Defines how each service's JSON structure maps to our unified schema
+
+# Unified schema definition
+unified_schema:
+  source: string                # Source service name
+  timestamp: string             # ISO-8601 timestamp when received
+  job_id: string                # Job identifier
+  mining_pool: string           # Name of the mining pool
+  difficulty: number            # Mining difficulty
+  prev_block_hash: string       # Previous block hash
+  coinbase_tx: string           # Coinbase transaction
+  merkle_branches: array        # Merkle branches array
+  version: string               # Block version
+  bits: string                  # Difficulty bits
+  time: number                  # Block time
+  height: number                # Block height
+  clean_jobs: boolean           # Clean jobs flag
+  region:
+    source: string              # Region of the client
+    target: string              # Region of the service
+  metadata: object              # Source-specific fields
+
+# miningpool.observer mapping
+miningpool.observer:
+  # Assuming standard mining.notify method format
+  job_id: params[0]
+  prev_block_hash: params[1]
+  coinbase_tx: concat(params[2], params[3])
+  merkle_branches: params[4]
+  version: params[5]
+  bits: params[6]
+  time: params[7]
+  clean_jobs: params[8]
+  mining_pool: pool.name
+  difficulty: pool.difficulty
+  height: height
+
+# stratum.work mapping
+stratum.work:
+  # Assuming a different structure
+  job_id: job.id
+  prev_block_hash: job.prevHash
+  coinbase_tx: job.coinbase
+  merkle_branches: job.merkleBranches
+  version: job.version
+  bits: job.bits
+  time: job.time
+  height: job.height
+  clean_jobs: job.cleanJobs
+  mining_pool: pool.name
+  difficulty: difficulty
+
+# mempool.space mapping
+mempool.space:
+  # Assuming similar to standard mining.notify
+  job_id: params[0]
+  prev_block_hash: params[1]
+  coinbase_tx: concat(params[2], params[3])
+  merkle_branches: params[4]
+  version: params[5]
+  bits: params[6]
+  time: params[7]
+  clean_jobs: params[8]
+  mining_pool: pool.name
+  difficulty: pool.difficulty
+  height: height
