@@ -1,7 +1,7 @@
 # Schema transformation rules for different services
 # Defines how each service's JSON structure maps to our unified schema
 
-# Unified schema definition
+# Unified schema definition 
 unified_schema:
   source: string                # Source service name
   timestamp: string             # ISO-8601 timestamp when received
