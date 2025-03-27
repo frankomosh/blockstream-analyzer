@@ -19,12 +19,12 @@ class BaseStratumClient:
         self,
         service_name: str,
         websocket_url: str,
-        message_handler: callable,
+        message_handler: Callable,
         reconnect_interval: float = 5.0,
         max_reconnect_interval: float = 60.0,
         reconnect_factor: float = 1.5,
-        source_origin: str = "unknown",
-        target_origin: str = "unknown"
+        source_region: str = "unknown",
+        target_region: str = "unknown"
     ):
         """
         Initializing the stratum client
@@ -141,7 +141,7 @@ class BaseStratumClient:
         return {
             "service_name": self.service_name,
             "websocket_url": self.websocket_url,
-            "connected": self.self.websocket is not None and not self.websocket.closed,
+            "connected": self.websocket is not None and not self.websocket.closed,
             "connection_attempts": self.connection_attempts,
             "connected_at": self.connected_at,
             "messages_received": self.messages_received,
