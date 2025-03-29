@@ -1,1 +1,1 @@
-# BlockStream-Analyzer
+# blockStream-analyzer
